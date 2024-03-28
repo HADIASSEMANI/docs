@@ -1,0 +1,173 @@
+import { Callout } from "nextra/components";
+
+# Directory Sync
+
+## Directory Sync for Your Organization
+
+Directory Sync will allow your organization to provision and de-provision accounts with your directory provider.
+
+<Callout type="info">
+    **Note**: Only administrators with _Owner_ privileges have access to directory sync settings for your organization. Refer to <a href="#how-to-set-owner-status"><ins>how to set owner status</ins></a> for more information.
+</Callout>
+
+## Configuring Directory Sync
+
+### How to Retrieve SCIM API Endpoint
+
+1. Navigate to the _Security_ tab under your organization settings on Wave. <br /><br />
+
+    <img src="/security/directory-sync/security-tab.png" alt="Navigate to Security Tab" width="500px" />
+    <br />
+
+2. Select '__Configure__' under _Directory Sync_. <br /><br />
+
+    <img src="/security/directory-sync/configure-button.png" alt="Select Configure" width="500px" />
+    <br />
+
+3. Copy your organization SCIM endpoint by clicking on the clipboard icon. <br /><br />
+
+    <img src="/security/directory-sync/copy-scim-endpoint.png" alt="Copy SCIM Endpoint" width="500px" />
+    <br />
+
+### How to Generate Access Token
+
+1. Navigate to the _Security_ tab under your organization settings on Wave and select '__Add token__' under _Tokens_. <br /><br />
+
+    <img src="/security/directory-sync/add-token.png" alt="Add Token" width="500px" />
+    <br />
+
+2. Assign a name to your token, select _Manage SCIM_ for _Scopes_, and press '__Create__' to generate a new token. <br /><br />
+
+    <img src="/security/directory-sync/generate-token.png" alt="Generate Access Token" width="500px" />
+    <br />
+
+3. Copy this token by clicking on the clipboard icon. <br /><br />
+
+    <img src="/security/directory-sync/copy-token.png" alt="Copy Access Token" width="500px" />
+    <br />
+
+## Set Up Provisioning for Your Organization
+
+### Microsoft Azure
+
+1. Navigate to _Enterprise applications_ under your organization's overview page.
+
+2. Select your desired Azure application or create a new one (learn more about _<a href="https://docs.wavecnct.com/security/microsoft-intra-id#configure-saml-on-azure"><ins>creating a new application on Azure</ins></a>_).
+
+2. Select _Provision User Accounts_ or navigate to _Provisioning_ tab in the side bar menu. <br /><br />
+
+    <img src="/security/directory-sync/navigate-to-provisioning.png" alt="Navigate to Provisioning" width="500px" />
+    <br />
+
+3. In the new page, click on '__Get started__' to set up provisioning. <br /><br />
+
+    <img src="/security/directory-sync/get-started.png" alt="Press Get Started Button" width="500px" />
+    <br />
+
+4. Map _Provisioning Mode_ to _Automatic_. <br /><br />
+
+    <img src="/security/directory-sync/automatic-provisioning.png" alt="Set Provisioning to Automatic" width="500px" />
+    <br />
+
+5. Navigate to '__Admin Credentials__.' <br /><br />
+
+    <img src="/security/directory-sync/admin-credentials.png" alt="Navigate to Admin Credentials" width="500px" />
+    <br />
+
+6. Paste your SCIM URL endpoint under '_Tenant URL_' field on '_Admin Credentials_' under your application's provisioning page. Refer to <a href="#how-to-retrieve-scim-api-endpoint"><ins>our guide on retrieving your organization's SCIM endpoint URL </ins></a> for more information. <br /><br />
+
+    <img src="/security/directory-sync/paste-scim-endpoint.png" alt="Paste Your SCIM Endpoint" width="500px" />
+    <br />
+
+
+7. Paste your security token under '_Secret Token_' field on '_Admin Credentials_' under your application's provisioning page. Refer to <a href="#how-to-generate-access-token"><ins>our guide on generating access token for your organization's API </ins></a> for more information. <br /><br />
+
+    <img src="/security/directory-sync/paste-token.png" alt="Paste Access Token" width="500px" />
+    <br />
+
+8. Click on '__Test Connection__' to test your SCIM connection. You should receive a confirmation message from Azure. Once your connection is validated, click on '__Save__.' <br /><br />
+
+    <img src="/security/directory-sync/test-connection.png" alt="Test Your SCIM Connection" width="700px" />
+    <br />
+
+10. Return to the provisining menu and select '__Start provisioning__.' <br /><br />
+
+    <img src="/security/directory-sync/start-provisioning.png" alt="Start Provisioning" width="500px" />
+    <br />
+
+## Assigning Member to a Team
+
+### Microsoft Azure
+
+1. Navigate to _Users and groups_ under the side bar menu of your application overview page on Microsoft Azure. <br /><br />
+
+    <img src="/security/directory-sync/users-and-groups.png" alt="Navigate to Users and Groups Tab" width="500px" />
+    <br />
+
+2. Click on '__Add user/group__.' <br /><br />
+
+    <img src="/security/directory-sync/add-users-groups.png" alt="Add Users and Groups" width="500px" />
+    <br />
+
+3. Click on '__None Selected__.' <br /><br />
+
+    <img src="/security/directory-sync/none-selected.png" alt="Click on None Selected" width="500px" />
+    <br />
+
+4. Select the users or groups you wish to add to your application then in the following page press '__Assign__.' <br /><br />
+
+    <img src="/security/directory-sync/select-users.png" alt="Select Users You Wish to Add to Your Application" width="500px" />
+    <br />
+
+5. Users assigned to your application will automatically sync to your team on Wave.
+
+    <Callout type="info">
+     **Note**: Users assigned to an Azure application will require a valid email address for provisining to work properly.
+   </Callout>
+
+## De-provisioning Member
+
+1. Navigate to _Users and groups_ under the side bar menu of your application overview page on Microsoft Azure. <br /><br />
+
+    <img src="/security/directory-sync/users-and-groups.png" alt="Navigate to Users and Groups Tab" width="500px" />
+    <br />
+
+2. Select the users or groups you wish to remove from your team. <br /><br />
+
+    <img src="/security/directory-sync/select-users-remove.png" alt="Select Users to Remove from Your Team" width="500px" />
+    <br />
+
+3. Click on '__Remove__.' <br /><br />
+
+    <img src="/security/directory-sync/remove-button.png" alt="Click on Remove Button" width="500px" />
+    <br />
+
+4. Click on '__Yes__' to confirm your removal request. <br /><br />
+
+    <img src="/security/directory-sync/yes-to-confirm.png" alt="Click on Yes to Confirm Removal" width="500px" />
+    <br />
+
+5. Users removed from your application will be automatically deleted from your team on Wave.
+
+
+## How to Set Owner Status
+
+1. Navigate to the _Administrators_ tab under your organization settings on Wave. <br /><br />
+
+    <img src="/security/directory-sync/admin-tab.png" alt="Navigate to Admin Tab" width="500px" />
+    <br />
+
+2. Click on the '__Edit__' icon next to the admin you wish to assign as _Owner_. <br /><br />
+
+    <img src="/security/directory-sync/edit-button.png" alt="Edit Button Location" width="500px" />
+    <br />
+
+3. Set user's role to _Owner_ then press '__Save__.' <br /><br />
+
+    <img src="/security/directory-sync/save-admin.png" alt="Save Changes" width="500px" />
+    <br />
+
+4. New owner will receive a confirmation email in their mailbox. <br /><br />
+
+    <img src="/security/directory-sync/confirmation-email.png" alt="Confirmation Email" width="500px" />
+    <br />
