@@ -1,4 +1,4 @@
-import { Callout } from "nextra/components";
+import { Callout, Cards, Card } from "nextra/components";
 
 # Directory Sync
 
@@ -7,7 +7,7 @@ import { Callout } from "nextra/components";
 Directory Sync will allow your organization to provision and de-provision accounts with your directory provider.
 
 <Callout type="info">
-    **Note**: Only administrators with '_Owner_' privileges have access to directory sync settings for your organization. Refer to <a href="#how-to-set-owner-status"><ins>how to set owner status</ins></a> for more information.
+    **Note**: Only administrators with '_Owner_' privileges have access to directory sync settings for your organization. Refer to <a href="/guide#how-to-set-owner-status"><ins>how to set owner status</ins></a> for more information.
 </Callout>
 
 ## Configuring Directory Sync
@@ -47,6 +47,10 @@ Directory Sync will allow your organization to provision and de-provision accoun
     <br />
 
 ## Set Up Provisioning for Your Organization
+
+<Cards style={{ display: "flex" }}>
+    <Card style={{ flexGrow: 1 }} title="Microsoft Azure" href="#microsoft-azure"/>
+</Cards>
 
 ### Microsoft Azure
 
@@ -97,6 +101,10 @@ Directory Sync will allow your organization to provision and de-provision accoun
 
 ## Assigning Member to a Team
 
+<Cards style={{ display: "flex" }}>
+    <Card style={{ flexGrow: 1 }} title="Microsoft Azure" href="#microsoft-azure-1"/>
+</Cards>
+
 ### Microsoft Azure
 
 1. Navigate to '_Users and groups_' under the side bar menu of your application overview page on Microsoft Azure. <br /><br />
@@ -127,6 +135,12 @@ Directory Sync will allow your organization to provision and de-provision accoun
 
 ## De-provisioning Member
 
+<Cards style={{ display: "flex" }}>
+    <Card style={{ flexGrow: 1 }} title="Microsoft Azure" href="#microsoft-azure-2"/>
+</Cards>
+
+### Microsoft Azure
+
 1. Navigate to '_Users and groups_' under the side bar menu of your application overview page on Microsoft Azure. <br /><br />
 
     <img src="/security/directory-sync/users-and-groups.png" alt="Navigate to Users and Groups Tab" width="500px" />
@@ -148,7 +162,6 @@ Directory Sync will allow your organization to provision and de-provision accoun
     <br />
 
 5. Users removed from your application will be automatically deleted from your team on Wave.
-
 
 ## How to Set Owner Status
 
