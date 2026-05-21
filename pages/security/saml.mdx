@@ -1,0 +1,42 @@
+import { Callout } from "nextra/components";
+
+# SAML Single Sign-On
+
+SSO offers a user-friendly approach to log into multiple applications or platforms using a single set of credentials. This document outlines our company's guidlines for SSO integration.
+
+To enable this feature, you must have a teams account and hold the owner role.
+
+Once enabled, All members will be able to log in using your identity provider. Additionally, any new users opting for SAML authentication will seamlessly integrate into your organization, streamlining the onboarding process.
+
+## How It Works
+
+1.  The user can use either of these methods:
+    - Member attempt to log in to Wave Connect (Wave) by entering his/her email address.
+    - The user attempts to login by clicking on the SSO button and entering the organization username (this can be found and configured under your organization settings on Teams by Wave Connect).
+2.  Wave Connect sends a request to the identity provider.
+3.  The identity provider checks this member's credentials.
+4.  The identity provider sends a response to Wave to verify the member's identity.
+5.  Wave accepts the response and logs the member into their Wave account.<br />
+
+<Callout type="info">**Note**: Email aliases do not work with SAML SSO.</Callout>
+
+## SAML - What We Need
+
+To integrate with our system, we will need the following:
+
+1. **The provider's Entity ID**: A name that identifies the identity provider.
+2. **The provider's SSO URL**: The URL of the identity provider's sign-in page.
+3. **The service provider Entity ID**: A name that identifies the service provider.
+4. **The provider's public key certificate**: The certificate used to validate tokens signed by the identity provider.
+
+## SAML - What You Will Need
+
+To link our authentication system to your SSO, you will need to add the following call-back URL into your SAML application configuration: `https://app.wavecnct.com/\_\_/auth/handler`
+
+## Enforcing SAML
+
+TODO
+
+## Use the custom login page
+
+TODO

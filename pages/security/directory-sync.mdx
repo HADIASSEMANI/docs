@@ -1,0 +1,283 @@
+import { Callout, Cards, Card, Steps } from "nextra/components";
+
+# Directory Sync
+
+## Directory Sync for Your Organization
+
+Directory Sync will allow your organization to provision and de-provision accounts with your directory provider.
+
+<Callout type="info">
+  **Note**: Only administrators with '_Owner_' privileges have access to directory sync settings for your organization.
+  Refer to <a href="/guide/administrators#how-to-set-owner-status"><ins>how to set owner status</ins></a> for more information.
+</Callout>
+
+## Configuring Directory Sync
+
+### How to Retrieve SCIM API Endpoint
+
+1. Navigate to '_Security_' tab under your organization settings on Wave. <br /><br />
+
+   <img src="/security/directory-sync/configuration/security-tab.png" alt="Navigate to Security Tab" width="500px" />
+   <br />
+
+2. Select '**Configure**' under '_Directory Sync_.' <br /><br />
+
+   <img src="/security/directory-sync/configuration/configure-button.png" alt="Select Configure" width="500px" />
+   <br />
+
+3. Copy the SCIM endpoint by clicking on the clipboard icon. <br /><br />
+
+   <img src="/security/directory-sync/configuration/copy-scim-endpoint.png" alt="Copy SCIM Endpoint" width="500px" />
+   <br />
+
+### How to Generate Access Token
+
+1. Navigate to '_Security_' tab under your organization settings on Wave and select '**Add token**' under '_Tokens_.' <br /><br />
+
+   <img src="/security/directory-sync/configuration/add-token.png" alt="Add Token" width="500px" />
+   <br />
+
+2. Assign a name to your token, select '_Manage SCIM_' for '_Scopes_,' and press '**Create**' to generate a new token. <br /><br />
+
+   <img src="/security/directory-sync/configuration/generate-token.png" alt="Generate Access Token" width="500px" />
+   <br />
+
+3. Copy this token by clicking on the clipboard icon. <br /><br />
+
+   <img src="/security/directory-sync/configuration/copy-token.png" alt="Copy Access Token" width="500px" />
+   <br />
+
+## Set Up Provisioning for Your Organization
+
+<Cards style={{ display: "flex" }}>
+   <Card icon={<img src="/security/directory-sync/microsoft-azure/microsoft-azure-logo.svg" alt="Microsoft Azure Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} />} style={{ flexGrow: 1 }} title="Microsoft Azure" href="#-microsoft-azure" img="/security/directory-sync/microsoft-azure.svg"/>
+   <Card icon={<img src="/security/directory-sync/jumpcloud/jumpcloud-logo.svg" alt="JumpCloud Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} />} style={{ flexGrow: 1 }} title="JumpCloud" href="#-jumpcloud" />
+</Cards>
+
+<div>
+  ### <img src="/security/directory-sync/microsoft-azure/microsoft-azure-logo.svg" alt="Microsoft Azure Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} /> <span style={{ fontWeight: "bold" }}>Microsoft Azure</span>
+</div>
+
+1. Navigate to '_Enterprise applications_' under your organization's overview page.
+
+2. Select your desired Azure application or create a new one (learn more about _<a href="https://docs.wavecnct.com/security/microsoft-intra-id#configure-saml-on-azure"><ins>creating a new application on Azure</ins></a>_).
+
+3. Select '_Provision User Accounts_' or navigate to '_Provisioning_' tab in the side bar menu. <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/navigate-to-provisioning.png" alt="Navigate to Provisioning" width="500px" />
+   <br />
+
+4. In the new page, click on '**Get started**' to set up provisioning. <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/get-started.png" alt="Press Get Started Button" width="500px" />
+   <br />
+
+5. Map '_Provisioning Mode_' to '_Automatic_.' <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/automatic-provisioning.png" alt="Set Provisioning to Automatic" width="500px" />
+   <br />
+
+6. Navigate to '**Admin Credentials**.' <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/admin-credentials.png" alt="Navigate to Admin Credentials" width="500px" />
+   <br />
+
+7. Paste the SCIM URL endpoint under '_Tenant URL_' field on '_Admin Credentials_' under your application's provisioning page. Refer to <a href="#how-to-retrieve-scim-api-endpoint"><ins>our guide on retrieving your organization's SCIM endpoint URL </ins></a> for more information. <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/paste-scim-endpoint.png" alt="Paste Your SCIM Endpoint" width="500px" />
+   <br />
+
+8. Paste your security token under '_Secret Token_' field on '_Admin Credentials_' under your application's provisioning page. Refer to <a href="#how-to-generate-access-token"><ins>our guide on generating access token for your organization's API </ins></a> for more information. <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/paste-token.png" alt="Paste Access Token" width="500px" />
+   <br />
+
+9. Click on '**Test Connection**' to test your SCIM connection. You should receive a confirmation message from Azure. Once your connection is validated, click on '**Save**.' <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/test-connection.png" alt="Test Your SCIM Connection" width="500px" />
+   <br />
+
+10. Return to the provisioning menu and select '**Start provisioning**.' <br /><br />
+
+    <img src="/security/directory-sync/microsoft-azure/start-provisioning.png" alt="Start Provisioning" width="500px" />
+    <br />
+
+
+<div>
+  ### <img src="/security/directory-sync/jumpcloud/jumpcloud-logo.svg" alt="JumpCloud Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} /> <span style={{ fontWeight: "bold" }}>JumpCloud</span>
+</div>
+
+1. Navigate to '_SSO Applications_' under your organization's overview page.
+
+2. Create a new application using '_Add New Application_' or select one already in your organization. <br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-1.png" alt="Add New Application" width="500px" />
+   <br />
+
+3. Select '_Custom Application_' then press '**Next**.' <br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-2.png" alt="Select Custom Application" width="500px" />
+   <br />
+
+4. In the new page, check '_Import users from this app (Identity Management)_' & '_Export users to this app (Identity Management)_' for provisioning then press '**Next**.' <br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-3.png" alt="Import & Export Users" width="500px" />
+   <br />
+
+5. Assign a label to your application then click on '**Save Application**.' <br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-4.png" alt="Save Application" width="500px" />
+   <br />
+
+6. Navigate to '_Identity Management_' under your newly created application. <br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-5.png" alt="Navigate to Identity Management" width="500px" />
+   <br />
+
+7. Paste the SCIM URL endpoint under '_Base URL_' field. Refer to <a href="#how-to-retrieve-scim-api-endpoint"><ins>our guide on retrieving your organization's SCIM endpoint URL </ins></a> for more information. <br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-6.png" alt="Paste SCIM URL" width="500px" />
+   <br />
+
+8. Paste your security token under '_Token Key_' field. Refer to <a href="#how-to-generate-access-token"><ins>our guide on generating access token for your organization's API </ins></a> for more information. <br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-7.png" alt="Paste Security Token" width="500px" />
+   <br />
+
+9. Enter a test email address in the field provided and use '**Test Connection**' to validate your SCIM connection. After receiving a confirmation message from JumpCloud, click on '**Activate**.' <br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-8.png" alt="Test SCIM Connection" width="500px" />
+   <br />
+
+10. Under '_Attribute Mapping_,' map '_PhoneNumbers.Value_' to '_Work Phone_,' '_Emails.Value_' to '_Company Email_,' and '_EnterpriseExtension.Organization_' to '_Company_' then click on '**Save**.' <br /><br />
+   
+      <img src="/security/directory-sync/jumpcloud/frame-9.png" alt="Attribute Mapping" width="500px" />
+   <br />
+
+
+## Assigning Members to a Team
+
+<Cards style={{ display: "flex" }}>
+  <Card icon={<img src="/security/directory-sync/microsoft-azure/microsoft-azure-logo.svg" alt="Microsoft Azure Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} />} style={{ flexGrow: 1 }} title="Microsoft Azure" href="#-microsoft-azure-1" />
+  <Card icon={<img src="/security/directory-sync/jumpcloud/jumpcloud-logo.svg" alt="JumpCloud Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} />} style={{ flexGrow: 1 }} title="JumpCloud" href="#-jumpcloud-1" />
+</Cards>
+
+<div>
+  ### <img src="/security/directory-sync/microsoft-azure/microsoft-azure-logo.svg" alt="Microsoft Azure Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} /> <span style={{ fontWeight: "bold" }}>Microsoft Azure</span>
+</div>
+
+1. Navigate to '_Users and groups_' under the side bar menu of your application overview page on Microsoft Azure. <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/users-and-groups.png" alt="Navigate to Users and Groups Tab" width="500px" />
+   <br />
+
+2. Click on '**Add user/group**.' <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/add-users-groups.png" alt="Add Users and Groups" width="500px" />
+   <br />
+
+3. Choose '**None Selected**.' <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/none-selected.png" alt="Click on None Selected" width="500px" />
+   <br />
+
+4. Select the users or groups you wish to add to your application then in the following page press '**Assign**.' <br /><br />
+
+   <img
+     src="/security/directory-sync/microsoft-azure/select-users.png"
+     alt="Select Users You Wish to Add to Your Application"
+     width="500px"
+   />
+   <br />
+
+5. Users assigned to your application will automatically sync to your team on Wave.
+
+   {" "}
+
+   <Callout type="info">
+     **Note**: Users assigned to an Azure application will require a valid email address for provisioning to work
+     properly.
+   </Callout>
+   <br />
+
+<div>
+  ### <img src="/security/directory-sync/jumpcloud/jumpcloud-logo.svg" alt="JumpCloud Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} /> <span style={{ fontWeight: "bold" }}>JumpCloud</span>
+</div>
+
+1. Navigate to '_User Groups_' in the side bar menu, then select the group you wish to set-up provisioning for.<br /><br />
+   
+      <img src="/security/directory-sync/jumpcloud/frame-10.png" alt="Navigate to User Groups" width="500px" />
+   <br />
+
+2. Under '_Applications_' tab for the group, assign an application from your organization and '**Save**.'<br /><br />
+   
+      <img src="/security/directory-sync/jumpcloud/frame-11.png" alt="Application Assignment" width="500px" />
+   <br />
+
+   { " " }
+
+   <Callout type="info">
+      **Note**: It is critical that the application you choose has '_Identity Management_' enabled.
+      Refer to <a href="#-jumpcloud"><ins>set up provisioning for your organization</ins></a> for more information.
+   </Callout>
+   <br/>
+
+3. Navigate to '_Users_' tab, select the users you wish to add to your group, and then press '**Save**.'<br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-12.png" alt="Add Users to Group" width="500px" />
+   <br />
+
+4. Users assigned to your group will automatically sync to your team on Wave.
+
+## De-provisioning Member
+
+<Cards style={{ display: "flex" }}>
+  <Card icon={<img src="/security/directory-sync/microsoft-azure/microsoft-azure-logo.svg" alt="Microsoft Azure Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} />} style={{ flexGrow: 1 }} title="Microsoft Azure" href="#-microsoft-azure-2" />
+  <Card icon={<img src="/security/directory-sync/jumpcloud/jumpcloud-logo.svg" alt="JumpCloud Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} />} style={{ flexGrow: 1 }} title="JumpCloud" href="#-jumpcloud-2" />
+</Cards>
+
+<div>
+  ### <img src="/security/directory-sync/microsoft-azure/microsoft-azure-logo.svg" alt="Microsoft Azure Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} /> <span style={{ fontWeight: "bold" }}>Microsoft Azure</span>
+</div>
+
+1. Navigate to '_Users and groups_' under the side bar menu of your application overview page on Microsoft Azure. <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/users-and-groups.png" alt="Navigate to Users and Groups Tab" width="500px" />
+   <br />
+
+2. Select the users or groups you wish to remove from your team. <br /><br />
+
+   <img
+     src="/security/directory-sync/microsoft-azure/select-users-remove.png"
+     alt="Select Users to Remove from Your Team"
+     width="500px"
+   />
+   <br />
+
+3. Click on '**Remove**.' <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/remove-button.png" alt="Click on Remove Button" width="500px" />
+   <br />
+
+4. Click on '**Yes**' to confirm your removal request. <br /><br />
+
+   <img src="/security/directory-sync/microsoft-azure/yes-to-confirm.png" alt="Click on Yes to Confirm Removal" width="500px" />
+   <br />
+
+5. Users removed from your application will be automatically deleted from your team on Wave.
+
+<div>
+  ### <img src="/security/directory-sync/jumpcloud/jumpcloud-logo.svg" alt="JumpCloud Logo" style={{ display: "inline", paddingRight: 10, marginTop: -5, height:24 }} /> <span style={{ fontWeight: "bold" }}>JumpCloud</span>
+</div>
+
+1. Navigate to '_User Groups_' in the side bar menu, then select the group you wish to modify.<br /><br />
+   
+      <img src="/security/directory-sync/jumpcloud/frame-10.png" alt="Navigate to User Groups" width="500px" />
+   <br />
+
+2. Navigate to '_Users_' tab, uncheck the users you wish to remove from your group, and then press '**Save**.'<br /><br />
+
+   <img src="/security/directory-sync/jumpcloud/frame-13.png" alt="Uncheck Users" width="500px" />
+   <br />
+
+4. Users unassigned from your group will automatically remove to your team on Wave.
