@@ -35,8 +35,39 @@ To link our authentication system to your SSO, you will need to add the followin
 
 ## Enforcing SAML
 
-TODO
+Once your SAML SSO integration has been configured and tested, organization owners can enforce SAML SSO across the organization.
 
-## Use the custom login page
+When SAML enforcement is enabled:
+- **Mandatory IdP Authentication**: All organization members must authenticate exclusively using your identity provider.
+- **Disabled Password & Social Logins**: Standard password login and third-party social logins (such as Google or Apple) will be disabled for members under your organization's domain.
+- **Automatic Member Provisioning**: New users authenticated via SAML will automatically be added to your organization under their corporate identity.
 
-TODO
+### How to Enforce SAML:
+
+1. Sign in to [Wave for Teams](https://teams.wavecnct.com/) with an **Owner** account.
+2. Navigate to **Organization Settings** > **Security** > **SAML Single Sign-On**.
+3. Toggle the **Enforce SAML SSO** switch to **Enabled**.
+4. Click **Save Changes**.
+
+<Callout type="warning">
+**Important**: Ensure that you have tested and verified that SAML SSO login functions properly for at least one administrator account before enabling enforcement to avoid locking members out of your organization.
+</Callout>
+
+## Use the Custom Login Page
+
+Wave provides a dedicated custom login page and direct login URL for your organization to streamline member access:
+
+1. **Find Your Organization Identifier**:
+   - Go to **Organization Settings** in [Wave for Teams](https://teams.wavecnct.com/).
+   - Under your organization profile, locate your unique **Organization Username / Slug**.
+
+2. **Direct SSO Login URL**:
+   - Share your organization-specific login URL with your team:
+     ```
+     https://app.wavecnct.com/login?org=<your-organization-username>
+     ```
+   - When users visit this link, they are automatically prompted to sign in with your corporate identity provider without having to manually enter an organization slug.
+
+3. **SP-Initiated Sign-In via Standard Login Page**:
+   - Alternatively, members can go to the standard login page at [app.wavecnct.com/login](https://app.wavecnct.com/login), click **Log in with SSO**, and enter your organization username to be redirected to your identity provider.
+

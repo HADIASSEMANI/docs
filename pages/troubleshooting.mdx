@@ -1,9 +1,115 @@
+import { Callout } from "nextra/components";
+
 # Troubleshooting
 
-## Common Errors
+---
+
+Find quick solutions to common issues and a reference guide for platform error codes.
+
+---
+
+## Common Issues & Solutions
 
 ### My Product is linked to another account
 
-### The email/phone is already linked to another account
+Every Wave physical product (NFC smart cards, digital badges, tags, or QR accessories) can only be linked to a single user profile at a time for privacy and security.
 
-## Error Codes
+If you see a notice that your product is already linked to another account:
+
+1. **If you own the previous account**:
+   - Log in to your previous Wave account at [app.wavecnct.com/login](https://app.wavecnct.com/login).
+   - Navigate to **Settings** > **Products & Devices**.
+   - Locate the card or product from the list and select **Unlink Product**.
+   - Log out, log into your new/current account, and scan or enter the product activation code to claim it.
+
+2. **If the product was previously used by a colleague or previous employee**:
+   - Ask your organization's Wave administrator to reassign the product to your user profile from the **Organization Admin Dashboard** under **Users** > **Products**.
+
+3. **If you cannot access the previous account**:
+   - Contact Wave Support via our [Contact Page](https://wavecnct.com/pages/contact-us) or email support with your product's serial number or QR URL. Our team will verify ownership and release the product for you.
+
+<Callout type="info">
+  **Security Note**: For your protection, Wave will not transfer product
+  ownership without verified proof of purchase or confirmation from the original
+  organization administrator.
+</Callout>
+
+---
+
+### The email or phone is already linked to another account
+
+Wave accounts require a unique email address and phone number for each user profile.
+
+If you encounter an "Email or phone already in use" message:
+
+1. **Existing Individual Account**:
+   - If you previously registered an individual or trial account using your work email, log into that account at [app.wavecnct.com/login](https://app.wavecnct.com/login).
+   - Go to **Settings** > **Account Details** to update the email address to a personal email, or delete the old account if it is no longer needed.
+   - You can then accept your company's organization invite with your work email.
+
+2. **Forgotten Password**:
+   - If you cannot remember having an account, use the **Forgot Password** link on the login page to send a reset link to your email address.
+
+3. **Organization Transfers**:
+   - If your email was registered under a previous employer's Wave organization, an administrator from that organization must remove your profile before your email can join a new organization.
+
+---
+
+### NFC Card Tapping Issues
+
+If tapping your Wave NFC card on a smartphone does not trigger the profile:
+
+- **Apple iPhones**:
+  - The NFC reader is located at the **very top edge** on the back of the iPhone.
+  - Ensure the screen is awake (iPhones do not read NFC tags when the screen is completely black/locked on older iOS versions).
+  - Compatible with iPhone 7 and newer (iPhone XS, XR, 11, 12, 13, 14, 15, and newer read automatically in background).
+- **Android Devices**:
+  - The NFC reader is typically located in the **center/middle of the back panel**.
+  - Verify that **NFC** is toggled **ON** in `Settings > Connected Devices > Connection Preferences > NFC`.
+- **Cases & Interference**:
+  - Thick metallic cases, wallet phone cases with RFID-blocking liners, or magnetic car mounts can block the NFC signal. Test tapping without the case.
+
+---
+
+### CRM Integration & Contact Sync Issues
+
+If contacts exchanged through Wave are not syncing to your CRM (Salesforce, HubSpot, Zoho, Dynamics 365):
+
+1. **Verify Connection Status**:
+   - Navigate to **Settings** > **Integrations** and verify that your CRM displays the active **Disconnect** button. If not, click **Connect** to re-authenticate.
+2. **Admin Account Permissions**:
+   - Ensure the user who authenticated the CRM integration has administrative privileges (e.g., Salesforce System Administrator, HubSpot Super Admin) to create and update Lead/Contact objects.
+3. **Auto-Sync Toggle**:
+   - Make sure the **Automatically sync contacts into the CRM** setting is enabled in the integration settings modal.
+4. **Salesforce Custom Field**:
+   - Ensure the `WaveConnectId__c` field exists on the **Lead** object under `Setup > Object Manager > Lead > Fields & Relationships`.
+
+---
+
+## Error Codes Reference
+
+Below is a complete reference of error codes, their causes, and recommended resolutions:
+
+| Error Code                          | HTTP Status             | Description & Cause                                                                              | Recommended Resolution                                                                                            |
+| :---------------------------------- | :---------------------- | :----------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| `ERR_PRODUCT_ALREADY_LINKED`        | `400 Bad Request`       | The physical product or QR code is currently linked to another user account.                     | Unlink the device from the old account under **Settings > Products**, or contact support with proof of ownership. |
+| `ERR_EMAIL_IN_USE`                  | `409 Conflict`          | The email address provided is already registered on Wave.                                        | Log into the existing account, reset the password, or change the email on the existing account.                   |
+| `ERR_PHONE_IN_USE`                  | `409 Conflict`          | The phone number provided is already associated with another profile.                            | Remove the phone number from the previous profile or use a different phone number.                                |
+| `ERR_AUTH_UNAUTHORIZED`             | `401 Unauthorized`      | Your session has expired or the provided access token is invalid.                                | Log out and sign back in to refresh your authentication session.                                                  |
+| `ERR_FORBIDDEN_PERMISSION`          | `403 Forbidden`         | You do not have the necessary permissions (e.g., Owner/Admin) to perform this action.            | Request an organization Owner or Admin to upgrade your role under **Settings > Administrators**.                  |
+| `ERR_INTEGRATION_AUTH_FAILED`       | `401 / 400`             | The OAuth token for your CRM integration (HubSpot, Salesforce, etc.) has expired or was revoked. | Go to **Settings > Integrations**, click **Disconnect**, and re-connect your CRM account.                         |
+| `ERR_INTEGRATION_PERMISSION_DENIED` | `403 Forbidden`         | The connected CRM user account lacks permissions to create or update CRM Leads/Contacts.         | Re-authenticate the integration using a CRM account with administrator permissions.                               |
+| `ERR_SAML_INVALID_ASSERTION`        | `400 Bad Request`       | The SAML 2.0 response from your Identity Provider failed cryptographic verification.             | Check your IdP X.509 certificate and verify Single Sign-On ACS URLs under **Security > SAML SSO**.                |
+| `ERR_SCIM_USER_NOT_FOUND`           | `404 Not Found`         | The SCIM directory sync update was targeted at a user that does not exist in the organization.   | Trigger a full directory sync from your Identity Provider (Azure AD / Okta) to re-provision the user.             |
+| `ERR_RATE_LIMIT_EXCEEDED`           | `429 Too Many Requests` | Too many requests were sent in a given amount of time.                                           | Wait 60 seconds before retrying the action.                                                                       |
+| `ERR_INVALID_FILE_TYPE`             | `400 Bad Request`       | An uploaded file (avatar, logo, or CSV) is not in a supported format.                            | Upload supported formats only (JPG, PNG, SVG for images; CSV for contact imports).                                |
+| `ERR_SERVER_ERROR`                  | `500 Internal Error`    | An unexpected server error occurred on Wave platform.                                            | Retry in a few moments or contact [Wave Support](https://wavecnct.com/pages/contact-us).                          |
+
+---
+
+## Still Need Help?
+
+If you are still encountering issues or have questions not covered in this guide:
+
+- **Contact Support**: Reach our team directly through our [Contact Page](https://wavecnct.com/pages/contact-us).
+- **Security Inquiries**: Check our [Security & Compliance](/security/compliance) documentation.
